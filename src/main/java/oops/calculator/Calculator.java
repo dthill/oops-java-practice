@@ -1,4 +1,5 @@
-package calculator;
+package oops.calculator;
+
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -56,7 +57,7 @@ public class Calculator {
     Operator parseOperator(String input) throws InputMismatchException {
         return switch (input) {
             case "+" -> Operator.ADD;
-            case "-" -> Operator.SUBSTRACT;
+            case "-" -> Operator.SUBTRACT;
             case "*" -> Operator.MULTIPLY;
             case "/" -> Operator.DIVIDE;
             default -> throw new InputMismatchException();
@@ -66,7 +67,7 @@ public class Calculator {
     double getResult(double firstOperand, Operator operator, double secondOperator) {
         return switch (operator) {
             case ADD -> firstOperand + secondOperator;
-            case SUBSTRACT -> firstOperand - secondOperator;
+            case SUBTRACT -> firstOperand - secondOperator;
             case MULTIPLY -> firstOperand * secondOperator;
             case DIVIDE -> firstOperand / secondOperator;
         };

@@ -1,4 +1,4 @@
-package emailvalidator;
+package oops.emailvalidator;
 
 import java.util.Scanner;
 
@@ -15,15 +15,15 @@ public class EmailValidator {
         String emailsInput = scanner.nextLine();
         String[] emailsArray = emailsInput.split(SEPARATORS);
         boolean allEmailsValid = true;
-        for (int i = 0; i < emailsArray.length; i++) {
+        for (String email : emailsArray) {
             String emailStatus;
-            if (this.isValidEmail(emailsArray[i])) {
+            if (this.isValidEmail(email)) {
                 emailStatus = "valid";
             } else {
                 emailStatus = "invalid";
                 allEmailsValid = false;
             }
-            System.out.println("The email " + emailsArray[i] + " is " + emailStatus);
+            System.out.println("The email " + email + " is " + emailStatus);
         }
         if (allEmailsValid) {
             System.out.println("All emails are valid");
@@ -34,10 +34,9 @@ public class EmailValidator {
     }
 
     boolean isValidEmail(String email) {
-        return email.matches("[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+.[a-zA-Z]+");
+        return email.matches("[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\\.[a-zA-Z]+");
     }
 
 
 }
 
-// santa@claus.com  santa1@claus.com,  santa2@claus.com; santa3@claus.com

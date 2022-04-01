@@ -1,8 +1,8 @@
-package calculator;
+package oops.calculator;
 
 public enum Operator {
     ADD,
-    SUBSTRACT,
+    SUBTRACT,
     MULTIPLY,
     DIVIDE
 }
