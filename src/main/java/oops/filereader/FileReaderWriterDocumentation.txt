@@ -1,0 +1,6 @@
+# File reader writer appender
+The FileReaderWriter asks the user if he wants to read, write or append to a file.
+If the user provides an invalid input he will be asked again until he provides a valid file action.
+Following this step the user will be asked for a file.
+If the user provides a file that does not exist for reading or appending operations, he will be asked again for a valid file.
+If the user provides a file that exists for writing actions, it will be overwritten otherwise the file will be created.

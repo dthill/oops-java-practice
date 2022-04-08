@@ -9,7 +9,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FileReaderWriter {
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         new FileReaderWriter().startProgram();
@@ -17,7 +17,7 @@ public class FileReaderWriter {
 
     public void startProgram() {
         FileOperation fileOperation = this.getFileOperation();
-        switch(fileOperation){
+        switch (fileOperation) {
             case READ -> this.readFile();
             case WRITE -> this.writeToFile();
             case APPEND -> this.appendToFile();
@@ -48,18 +48,18 @@ public class FileReaderWriter {
         };
     }
 
-    private Path getFilePath(){
+    private Path getFilePath() {
         System.out.println("Enter the file name");
         String fileName = scanner.nextLine();
         return Paths.get(fileName);
     }
 
-    private StringBuffer getFileContent(){
+    private StringBuffer getFileContent() {
         System.out.println(("Enter the file content (use double enter to exit)"));
-        StringBuffer fileContent = new StringBuffer("");
-        while(scanner.hasNextLine()){
+        StringBuffer fileContent = new StringBuffer();
+        while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
-            if(input == null || input.isEmpty()){
+            if (input == null || input.isEmpty()) {
                 break;
             }
             fileContent.append(input);
@@ -68,8 +68,8 @@ public class FileReaderWriter {
         return fileContent;
     }
 
-    private void readFile(){
-        while(true){
+    private void readFile() {
+        while (true) {
             try {
                 Path fileName = this.getFilePath();
                 String fileContent = Files.readString(fileName);
@@ -83,23 +83,23 @@ public class FileReaderWriter {
         }
     }
 
-    private void writeToFile(){
+    private void writeToFile() {
         Path fileName = this.getFilePath();
-        if(!Files.exists(fileName)){
+        if (!Files.exists(fileName)) {
             System.out.println("This file does not exist yet and will be created");
         }
         StringBuffer fileContent = this.getFileContent();
-        try{
+        try {
             Files.writeString(fileName, fileContent, StandardOpenOption.CREATE);
             System.out.println("The file was written successfully");
-        } catch (IOException e){
+        } catch (IOException e) {
             this.displayWriteErrorMessage();
         }
     }
 
-    private void appendToFile(){
+    private void appendToFile() {
         Path fileName = this.getFilePath();
-        while(!Files.exists(fileName)){
+        while (!Files.exists(fileName)) {
             System.out.println("This file does not exist. Please provide a valid file.");
             fileName = this.getFilePath();
         }
@@ -107,12 +107,12 @@ public class FileReaderWriter {
         try {
             Files.writeString(fileName, fileContent, StandardOpenOption.APPEND);
             System.out.println("The content was appended successfully");
-        } catch (IOException e){
+        } catch (IOException e) {
             this.displayWriteErrorMessage();
         }
     }
 
-    private void displayWriteErrorMessage(){
+    private void displayWriteErrorMessage() {
         System.out.println("An error occurred while writing to the file");
         System.out.println("Please make sure you have enough disk space and access rights");
     }
