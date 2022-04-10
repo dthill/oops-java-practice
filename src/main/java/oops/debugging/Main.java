@@ -1,6 +1,7 @@
 package oops.debugging;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -85,7 +86,6 @@ public class Main {
                 }
             }
         }
-
     }
 
     private static void closeApp() {
@@ -95,20 +95,17 @@ public class Main {
     private static void searchExpenses(ArrayList<Integer> arrayList) {
         Integer searchedExpense = getExpensesSearch();
         boolean expenseFound = false;
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (searchedExpense.equals(arrayList.get(i))) {
+        Iterator<Integer> iterator = arrayList.iterator();
+        while (iterator.hasNext()) {
+            Integer currentExpence = iterator.next();
+            if (searchedExpense.equals(currentExpence)) {
                 expenseFound = true;
-                System.out.println("Expense found: " + arrayList.get(i));
+                System.out.println("Expense found: " + currentExpence);
             }
         }
         if (!expenseFound) {
             System.out.println("No expense found matching your search");
         }
-    }
-
-    private static void sortExpenses(ArrayList<Integer> arrayList) {
-        int arrlength = arrayList.size();
-        //Complete the method. The expenses should be sorted in ascending order.
     }
 
     private static Integer getExpensesSearch() {
@@ -125,5 +122,42 @@ public class Main {
             }
         }
         return searchInteger;
+    }
+
+    private static void sortExpenses(ArrayList<Integer> arrayList) {
+        arrayList = mergeSort(arrayList);
+        System.out.println("Sorted expenses: ");
+        System.out.println(arrayList);
+    }
+
+    private static ArrayList<Integer> mergeLists(ArrayList<Integer> leftList, ArrayList<Integer> rightList) {
+        ArrayList<Integer> result = new ArrayList<>();
+        while (leftList.size() > 0 && rightList.size() > 0) {
+            result.add(leftList.get(0) < rightList.get(0) ? leftList.remove(0) : rightList.remove(0));
+        }
+        if (leftList.size() > 0) {
+            result.addAll(leftList);
+        } else {
+            result.addAll(rightList);
+        }
+        return result;
+    }
+
+    private static ArrayList<Integer> mergeSort(ArrayList<Integer> list) {
+        int length = list.size();
+        if (length <= 1) {
+            return list;
+        }
+        int middle = length / 2;
+        ArrayList<Integer> leftList = new ArrayList<>();
+        ArrayList<Integer> rightList = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
+            if (i < middle) {
+                leftList.add(list.get(i));
+            } else {
+                rightList.add((list.get(i)));
+            }
+        }
+        return mergeLists(mergeSort(leftList), mergeSort(rightList));
     }
 }
