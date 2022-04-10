@@ -5,6 +5,15 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
+    private static ArrayList<Integer> expenses = new ArrayList<>();
+
+    static {
+        expenses.add(1000);
+        expenses.add(2300);
+        expenses.add(45000);
+        expenses.add(32000);
+        expenses.add(110);
+    }
 
     public static void main(String[] args) {
         System.out.println("\n**************************************\n");
@@ -28,14 +37,6 @@ public class Main {
             System.out.println(arr[i]);
             // display the all the Strings mentioned in the String array
         }
-        ArrayList<Integer> arrlist = new ArrayList<Integer>();
-        ArrayList<Integer> expenses = new ArrayList<Integer>();
-        expenses.add(1000);
-        expenses.add(2300);
-        expenses.add(45000);
-        expenses.add(32000);
-        expenses.add(110);
-        expenses.addAll(arrlist);
         System.out.println("\nEnter your choice:\t");
         Scanner sc = new Scanner(System.in);
         int options = sc.nextInt();
@@ -52,10 +53,8 @@ public class Main {
                         int value = sc.nextInt();
                         expenses.add(value);
                         System.out.println("Your value is updated\n");
-                        expenses.addAll(arrlist);
                         System.out.println(expenses + "\n");
                         optionsSelection();
-
                         break;
                     case 3:
                         System.out.println("You are about the delete all your expenses! \nConfirm again by selecting the same option...\n");
@@ -70,11 +69,11 @@ public class Main {
                         optionsSelection();
                         break;
                     case 4:
-                        sortExpenses(expenses);
+                        sortExpenses();
                         optionsSelection();
                         break;
                     case 5:
-                        searchExpenses(expenses);
+                        searchExpenses();
                         optionsSelection();
                         break;
                     case 6:
@@ -92,10 +91,10 @@ public class Main {
         System.out.println("Closing your application... \nThank you!");
     }
 
-    private static void searchExpenses(ArrayList<Integer> arrayList) {
+    private static void searchExpenses() {
         Integer searchedExpense = getExpensesSearch();
         boolean expenseFound = false;
-        Iterator<Integer> iterator = arrayList.iterator();
+        Iterator<Integer> iterator = expenses.iterator();
         while (iterator.hasNext()) {
             Integer currentExpence = iterator.next();
             if (searchedExpense.equals(currentExpence)) {
@@ -124,10 +123,10 @@ public class Main {
         return searchInteger;
     }
 
-    private static void sortExpenses(ArrayList<Integer> arrayList) {
-        arrayList = mergeSort(arrayList);
+    private static void sortExpenses() {
+        expenses = mergeSort(expenses);
         System.out.println("Sorted expenses: ");
-        System.out.println(arrayList);
+        System.out.println(expenses + "/n");
     }
 
     private static ArrayList<Integer> mergeLists(ArrayList<Integer> leftList, ArrayList<Integer> rightList) {
