@@ -93,13 +93,37 @@ public class Main {
     }
 
     private static void searchExpenses(ArrayList<Integer> arrayList) {
-        int leng = arrayList.size();
-        System.out.println("Enter the expense you need to search:\t");
-        //Complete the method
+        Integer searchedExpense = getExpensesSearch();
+        boolean expenseFound = false;
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (searchedExpense.equals(arrayList.get(i))) {
+                expenseFound = true;
+                System.out.println("Expense found: " + arrayList.get(i));
+            }
+        }
+        if (!expenseFound) {
+            System.out.println("No expense found matching your search");
+        }
     }
 
     private static void sortExpenses(ArrayList<Integer> arrayList) {
         int arrlength = arrayList.size();
         //Complete the method. The expenses should be sorted in ascending order.
+    }
+
+    private static Integer getExpensesSearch() {
+        System.out.println("Enter the expense you need to search:\t");
+        Scanner scanner = new Scanner(System.in);
+        Integer searchInteger;
+        while (true) {
+            String searchInput = scanner.nextLine();
+            try {
+                searchInteger = Integer.valueOf(searchInput);
+                break;
+            } catch (NumberFormatException exception) {
+                System.out.println("Please enter a valid integer to search.");
+            }
+        }
+        return searchInteger;
     }
 }

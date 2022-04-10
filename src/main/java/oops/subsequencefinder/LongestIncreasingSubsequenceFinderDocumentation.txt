@@ -1,0 +1,4 @@
+# Longest Increasing Subsequence
+The program first generate a random list of n = 40 integers. That are all between 0 and 39.
+Following this step it iterates over the generated list and prints out the list of the longest increasing subsequence.
+If no increasing subsequence is found an empty list is printed.
