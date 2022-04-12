@@ -1,0 +1,12 @@
+# Fix Bugs of the Application
+
+A dedicated feature branch called "sort-and-search-implementation" was created in the git repository:
+https://github.com/dthill/oops-java-practice/tree/sort-and-search-implementation
+
+In a first step the search functionality was implemented. It checks if the user input is valid and then returns all found expenses that match the given user input. If no matching expense was found a message is shown.
+
+In a second step the sort functionality was implemented using the merge sort algorithm. The given list is replaced with the sorted list and the result is shown.
+
+In a third step the existing implementation of the expenses list was change to make it a static field of the main class so that it is not recreated at the end of every user interaction.
+
+Each step was added to the feature branch in a dedicated commit and is ready for peer-review and mergin into the main branch.

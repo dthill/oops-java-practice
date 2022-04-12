@@ -105,6 +105,7 @@ public class Main {
         if (!expenseFound) {
             System.out.println("No expense found matching your search");
         }
+        System.out.println("\n");
     }
 
     private static Integer getExpensesSearch() {
@@ -126,7 +127,7 @@ public class Main {
     private static void sortExpenses() {
         expenses = mergeSort(expenses);
         System.out.println("Sorted expenses: ");
-        System.out.println(expenses + "/n");
+        System.out.println(expenses + "\n");
     }
 
     private static ArrayList<Integer> mergeLists(ArrayList<Integer> leftList, ArrayList<Integer> rightList) {
